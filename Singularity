@@ -1,5 +1,5 @@
-Bootstrap: docker
-From: ubuntu:latest
+Bootstrap:docker
+From:ubuntu:latest
 
 %labels
 Maintainer: Zac Stephens
