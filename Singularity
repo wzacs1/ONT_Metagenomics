@@ -21,3 +21,4 @@ From:ubuntu:latest
 
 %environment
   export PATH=/root/SqueezeMeta/scripts/:/root/SqueezeMeta/utils/:$PATH
+  export TESTVAR="hello world"
