@@ -2,37 +2,22 @@ Bootstrap:docker
 From:ubuntu:latest
 
 %post
-      # Most from chpc ubuntu build def
+  SQUEEZEMETADBPATH=/uufs/chpc.utah.edu/common/home/round-group1/reference_seq_dbs/SqueezeMeta
+
   mkdir /uufs
   mkdir /scratch
-  apt-get && update apt-get install -y --no-install-recommends \
+  apt-get update
+
+  apt-get install -y --no-install-recommends \
   apt-utils \
   build-essential \
-  curl \
-  git \
-  libopenblas-dev \
-  libcurl4-openssl-dev \
-  libfreetype6-dev \
-  libpng-dev \
-  libzmq3-dev \
-  mpich \
-  python-pip \
-  pkg-config \
-  python-dev \
-  python-setuptools \
-  rsync \
-  software-properties-common \
-  unzip \
-  vim \
-  wget \
-  zip \
-  zlib1g-dev
-  apt-get clean
+  git
 
-  #MC issue with locale (LC_ALL, LANGUAGE), to get it right:
-  apt-get install -y language-pack-en
-  locale-gen "en_US.UTF-8"
-  dpkg-reconfigure locales
-  export LANGUAGE="en_US.UTF-8"
-  echo 'LANGUAGE="en_US.UTF-8"' >> /etc/default/locale
-  echo 'LC_ALL="en_US.UTF-8"' >> /etc/default/locale
+  cd /root
+  git clone https://github.com/jtamames/SqueezeMeta.git
+  cd SqueezeMeta
+
+  perl scripts/preparing_databases/configure_nodb.pl ${SQUEEZEMETADBPATH}
+
+%environment
+  export PATH=/root/SqueezeMeta/scripts/:/root/SqueezeMeta/utils/:$PATH
