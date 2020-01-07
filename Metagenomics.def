@@ -1,9 +1,7 @@
 Bootstrap: docker
 From: ubuntu:16.04
 
-%labels
-Maintainer: Zac Stephens
-Initialized: 2020-01-05
+%setup
 
 %environment
 
@@ -46,9 +44,5 @@ $post
 %runscript
 
 %test
-
-%environment
-
-%files
 
 %help
