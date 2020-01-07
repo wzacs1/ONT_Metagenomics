@@ -1,20 +1,13 @@
-BootStrap: debootstrap
-OSVersion: xenial
-MirrorURL: http://us.archive.ubuntu.com/ubuntu/
-IncludeCmd: yes
-Include: bash vim less man-db apt-utils tzdata
+Bootstrap:docker
+From:nfcore/base
 
-%setup
+%post
 
-%environment
+    /opt/conda/bin/conda env create -f /environment.yml
+    /opt/conda/bin/conda clean -a
+    mkdir -p /ifs
+    apt-get -y install procps unzip
+    mkdir -p /opt/trimmomatic && cd /opt/trimmomatic && wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.36.zip \
+        && unzip Trimmomatic-0.36.zip && mv Trimmomatic-0.36 0.36 && rm Trimmomatic-0.36.zip
 
-$post
-  # Most from chpc ubuntu build def
-  mkdir /uufs
-  mkdir /scratch
-
-%runscript
-
-%test
-
-%help
+    cd /opt
