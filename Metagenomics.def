@@ -3,6 +3,7 @@ From: ubuntu:latest
 
 %labels
 Maintainer: Zac Stephens
+Initialized: 2020-01-05
 
 %environment
 
