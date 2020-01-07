@@ -1,5 +1,8 @@
-BootStrap: docker
+Bootstrap: docker
 From: ubuntu:latest
+
+%labels
+Maintainer: Zac Stephens
 
 %environment
 
@@ -46,7 +49,5 @@ $post
 %environment
 
 %files
-
-%labels
 
 %help
