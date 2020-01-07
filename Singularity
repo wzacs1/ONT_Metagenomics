@@ -1,5 +1,8 @@
-Bootstrap: docker
-From: ubuntu:16.04
+BootStrap: debootstrap
+OSVersion: xenial
+MirrorURL: http://us.archive.ubuntu.com/ubuntu/
+IncludeCmd: yes
+Include: bash vim less man-db apt-utils tzdata
 
 %setup
 
